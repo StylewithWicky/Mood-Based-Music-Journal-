@@ -3,30 +3,27 @@ from models import db, MoodLog, User, EmotionType
 
 mood_bp = Blueprint('mood_bp', __name__)
 
-@mood_bp.route('/moods', methods=['POST'])
-def create_mood():
+@mood_bp.route('/moods/<int:id>', methods=['PUT'])
+def update_mood(id):
+    mood = MoodLog.query.get(id)
+    if not mood:
+        return jsonify({'error': 'MoodLog not found'}), 404
+
     data = request.get_json()
-    mood = data.get('mood')
-    journal = data.get('journal_entry')
-    user_id = data.get('user_id')
-    emotion_type_id = data.get('emotion_type_id')
-
-    if not mood or not user_id or not emotion_type_id:
-        return jsonify({'error': 'Mood, user_id, and emotion_type_id are required'}), 400
-
-   
-    user = User.query.get(user_id)
-    emotion = EmotionType.query.get(emotion_type_id)
-    if not user or not emotion:
-        return jsonify({'error': 'Invalid user_id or emotion_type_id'}), 400
-
-    new_log = MoodLog(mood=mood, journal_entry=journal, user_id=user_id, emotion_type_id=emotion_type_id)
-    db.session.add(new_log)
+    mood.mood = data.get('mood', mood.mood)
+    mood.journal_entry = data.get('journal_entry', mood.journal_entry)
+    mood.user_id = data.get('user_id', mood.user_id)
+    mood.emotion_type_id = data.get('emotion_type_id', mood.emotion_type_id)
     db.session.commit()
 
-    return jsonify(new_log.to_dict()), 201
+    return jsonify(mood.to_dict())
 
-@mood_bp.route('/moods', methods=['GET'])
-def get_moods():
-    moods = MoodLog.query.order_by(MoodLog.created_at.desc()).all()
-    return jsonify([m.to_dict() for m in moods])
+@mood_bp.route('/moods/<int:id>', methods=['DELETE'])
+def delete_mood(id):
+    mood = MoodLog.query.get(id)
+    if not mood:
+        return jsonify({'error': 'MoodLog not found'}), 404
+
+    db.session.delete(mood)
+    db.session.commit()
+    return jsonify({'message': 'MoodLog deleted successfully'})
