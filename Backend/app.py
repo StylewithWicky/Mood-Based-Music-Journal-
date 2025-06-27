@@ -28,5 +28,9 @@ app.register_blueprint(emotion_bp)
 from controllers.auth_controller import auth_bp
 app.register_blueprint(auth_bp, url_prefix="/auth")
 
+from controllers.music_controller import music_bp
+app.register_blueprint(music_bp)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
