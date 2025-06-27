@@ -7,13 +7,14 @@ with app.app_context():
     db.create_all()
 
     # --- Seed Users ---
-    users = [
-        User(username="john_doe", email="john@example.com"),
-        User(username="jane_doe", email="jane@example.com"),
-    ]
-    db.session.add_all(users)
-    db.session.commit()
+    user1 = User(username="itsjustmaitai", email="itsjustmaitai@gmail.com")
+    user1.set_password("pass123")
 
+    user2 = User(username="jane_doe", email="jane@example.com")
+    user2.set_password("securepass")
+            
+    db.session.add_all([user1, user2])
+    db.session.commit()
     # --- Seed Emotion Types ---
     emotions = [
         EmotionType(name="Happy"),
