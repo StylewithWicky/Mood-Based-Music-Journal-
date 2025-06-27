@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from . import db
 
-db=SQLAlchemy()
 
 class MoodLog(db.Model):
     id=db.Column(db.Integer, primary_key=True)
