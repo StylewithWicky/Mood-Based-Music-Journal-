@@ -4,7 +4,7 @@ from datetime import datetime
 
 mood_bp=Blueprint('mood_bp',__name__)
 
-@mood_bp.route('moods' ,methods=['POST'])
+@mood_bp.route('/moods' ,methods=['POST'])
 def create_moods():
     data=request.get_json()
     mood=data.get('mood')
