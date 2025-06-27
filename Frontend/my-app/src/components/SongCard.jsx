@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Css/SongCard.css';
 
 function SongCard({ song, artist, url, previewUrl }) {
   return (

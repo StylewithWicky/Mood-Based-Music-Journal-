@@ -19,7 +19,7 @@ function App() {
     <div>
       {isAuthenticated ? (
         <>
-          <button onClick={handleLogout}>Logout</button>
+          
           <MoodForm />
         </>
       ) : (

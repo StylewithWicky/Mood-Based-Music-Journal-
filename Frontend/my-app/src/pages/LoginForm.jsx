@@ -2,6 +2,7 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import '../Css/LoginForm.css'
 
 function LoginForm({ onLogin }) {
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
@@ -20,8 +21,9 @@ function LoginForm({ onLogin }) {
   }
 
   return (
-    <div>
-      <h2>Login</h2>
+<div className="login-container">
+  <img src="Frontend/my-app/src/assets/Screenshot from 2025-06-27 23-18-51.png" alt="avatar" />
+  <h2>Login Form</h2>
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={Yup.object({
