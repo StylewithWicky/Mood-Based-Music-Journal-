@@ -5,9 +5,11 @@ from models import db
 from controllers.mood_controller import mood_bp
 from controllers.emotional_controller import emotion_bp
 from controllers.user_controller import user_bp
+from flask_jwt_extended import JWTManager
 
 app=Flask(__name__)
 app.config.from_object(Config)
+jwt = JWTManager(app)
 
 CORS(app)
 db.init_app(app)
@@ -18,6 +20,9 @@ with app.app_context():
 app.register_blueprint(mood_bp)
 app.register_blueprint(user_bp)
 app.register_blueprint(emotion_bp)
+from controllers.auth_controller import auth_bp
+app.register_blueprint(auth_bp)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
