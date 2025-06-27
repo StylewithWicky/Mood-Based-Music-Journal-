@@ -1,4 +1,3 @@
-# controllers/music_controller.py
 
 from flask import Blueprint, request, jsonify
 import requests

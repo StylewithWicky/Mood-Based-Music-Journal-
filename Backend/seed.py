@@ -6,7 +6,6 @@ with app.app_context():
     db.drop_all()
     db.create_all()
 
-    # --- Seed Users ---
     user1 = User(username="itsjustmaitai", email="itsjustmaitai@gmail.com")
     user1.set_password("pass123")
 
@@ -15,7 +14,7 @@ with app.app_context():
             
     db.session.add_all([user1, user2])
     db.session.commit()
-    # --- Seed Emotion Types ---
+    
     emotions = [
         EmotionType(name="Happy"),
         EmotionType(name="Sad"),
@@ -26,20 +25,20 @@ with app.app_context():
     db.session.add_all(emotions)
     db.session.commit()
 
-    # --- Seed Mood Logs ---
+   
     moods = [
         MoodLog(
             mood="Grateful",
             journal_entry="Had a peaceful walk this morning.",
             user_id=users[0].id,
-            emotion_type_id=emotions[4].id,  # Grateful
+            emotion_type_id=emotions[4].id, 
             created_at=datetime(2025, 6, 27, 8, 0)
         ),
         MoodLog(
             mood="Anxious",
             journal_entry="Too many meetings today.",
             user_id=users[1].id,
-            emotion_type_id=emotions[3].id,  # Anxious
+            emotion_type_id=emotions[3].id,  
             created_at=datetime(2025, 6, 27, 10, 0)
         )
     ]

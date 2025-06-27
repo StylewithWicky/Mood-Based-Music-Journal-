@@ -1,12 +1,12 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: url('../assets/concert-bg.jpg') no-repeat center center fixed;
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center fixed;
   background-size: cover;
   color: #fff;
 }
 
-/* Header with logout */
+
 .form-header {
   display: flex;
   justify-content: space-between;
@@ -36,7 +36,7 @@ body {
   background-color: #e63842;
 }
 
-/* Container for form and calendar */
+
 .calm {
   display: flex;
   justify-content: space-between;
@@ -45,7 +45,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* Glass-style Form */
+
 .space-y-4 {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
@@ -79,7 +79,7 @@ body {
   margin-top: 20px;
 }
 
-/* Calendar styling */
+
 .calendar-box {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
@@ -105,7 +105,7 @@ body {
   color: #333;
 }
 
-/* Responsive tweaks */
+
 @media (max-width: 768px) {
   .calm {
     flex-direction: column;
